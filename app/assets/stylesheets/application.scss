@@ -13,6 +13,12 @@
  *= require_tree .
  *= require_self
  */
+$bg1: #0084ff;
+$bg2: #8fbbe5;
+$bg3: #b8cee3;
+$bg4: #e6f3ff;
+ 
+ 
 @import "bootstrap";
 // Tableing fix
 .fixed{
@@ -35,24 +41,30 @@
 
 //bgs
 .bg1{
-    background-color: #0084ff;
+    background-color: $bg1;
 }
 .bg2{
-    background-color: #8fbbe5;
+    background-color: $bg2;
 }
 .bg3{
-    background-color: #b8cee3;
+    background-color: $bg3;
 }
 .bg4{
-    background-color: #e6f3ff;
+    background-color: $bg4;
 }
 body{
-    background-color: #e6f3ff; 
+    background-color: $bg4; 
 }
 .footer{
     position:absolute;
     bottom:0;
 }
+// pills restyle
+
+.nav-link.active{
+    background-color: darken($bg1,15);
+}
+
 // emergency font-resizing
 // correcting: font
 @media screen and (max-width: 640px) {
