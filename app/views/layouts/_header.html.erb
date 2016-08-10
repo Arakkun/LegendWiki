@@ -1,26 +1,28 @@
-<div class="row fixed">
-    <div class="col-lg-2 col-md-1 col-sm-1 hidden-xs cell bg2 no-padding">
+<div class="row fixed" id="header">
+    <div class="col-lg-2 col-md-1 col-sm-1 hidden-xs cell bg2">
         <!--left-->
     </div>
     
-    <div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 cell bg1 no-padding">
+    <div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 cell bg1">
         <!--center-->
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
+        <h4>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <%= link_to '<span class="icon-microphone3"></span>UtauDB'.html_safe, root_url, class: "nav-link active" %>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+        </h4>
     </div>
-    <div class="col-lg-2 col-md-1 col-sm-1 hidden-xs cell bg2 no-padding">
+    <div class="col-lg-2 col-md-1 col-sm-1 hidden-xs cell bg2">
         <!--right-->
     </div>
     

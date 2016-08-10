@@ -20,6 +20,7 @@ $bg4: #e6f3ff;
  
  
 @import "bootstrap";
+@import url("glyphicons.scss");
 // Tableing fix
 .fixed{
     display: table;
@@ -32,13 +33,12 @@ $bg4: #e6f3ff;
     float: none;
     vertical-align:middle;
 }
-.no-padding{
-    padding:0;
-}
 .center{
     text-align: center;
 }
-
+[class^="hidden"], [class*=" hidden"], .no-padding{
+    padding: 0;
+} 
 //bgs
 .bg1{
     background-color: $bg1;
@@ -60,12 +60,47 @@ body{
     bottom:0;
 }
 // pills restyle
-
-.nav-link.active{
-    background-color: darken($bg1,15);
+.nav-link {
+    background-color: lighten($bg1,20);
 }
 
-// emergency font-resizing
+.nav-link.active{
+    background-color: darken($bg1,20);
+}
+
+.float-right{
+    float:right;
+}
+h1, h2, h3, h4, h5{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+// @media queries
+// responsive padding
+@media screen and (min-width: 1200px){
+    [class^="col-lg"], [class*=" col-lg"]{
+        padding: 0.6rem;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1119.999px){
+    [class^="col-md"], [class*=" col-md"]{
+        padding: 0.4rem;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991.999px){
+    [class^="col-sm"], [class*=" col-sm"]{
+        padding: 0.2rem;
+    }
+}
+@media screen and (max-width: 767.999px) {
+    [class^="col-xs"], [class*=" col-xs"]{
+        padding: 0.1rem;
+    }
+}
+
+
 // correcting: font
 @media screen and (max-width: 640px) {
     body{

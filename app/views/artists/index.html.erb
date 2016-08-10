@@ -1,26 +1,27 @@
 <p id="notice"><%= notice %></p>
 <h1>Artists</h1>
 <div class="row fixed">
-  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs bg3 cell no-padding"></div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg1 center cell no-padding"><h2>Avatar</h2></div>
-  <div class="col-lg-8 col-md-9 col-sm-10 col-xs-10 bg3 center cell no-padding"><h2>Name</h2></div>
-  <div class="col-lg-1 hidden-md hidden-sm hidden-xs bg1 cell no-padding"></div>
+  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs bg3 cell "></div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg1 center cell "><h2>Avatar</h2></div>
+  <div class="col-lg-8 col-md-9 col-sm-10 col-xs-10 bg3 center cell "><h2>Name</h2></div>
+  <div class="col-lg-1 hidden-md hidden-sm hidden-xs bg1 cell "></div>
 </div>
 <%isEven=false 
   @artists.each do |artist|%>
   <div class="row fixed">
   
-  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs <%= cycle('bg2','bg3','bg2','bg2','bg3','bg3','bg1','bg3','bg3','bg1')%> cell no-padding"></div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 <%= cycle('bg2','bg3','bg2','bg2','bg3','bg3','bg1','bg3','bg3','bg1')%> center cell no-padding"><img width="100%" src="<%= artist.image_url %>"/></div>
-  <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 <%= cycle('bg2','bg3','bg2','bg2','bg3','bg3','bg1','bg3','bg3','bg1')%> cell overlay no-padding">
+  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs cell "></div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg2','bg1','bg3','bg3')%> center cell">
+    <img width="100%" src="<%= artist.image_url %>"/></div>
+  <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg2','bg1','bg3','bg3')%> cell overlay ">
     <%= link_to 'Show', artist %><br>
     <%= link_to 'Edit', edit_artist_path(artist) %><br>
     <%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
-  <div class="col-lg-7 col-md-8 col-sm-8 col-xs-8 <%= cycle('bg2','bg3','bg2','bg2','bg3','bg3','bg1','bg3','bg3','bg1')%> center cell no-padding">
+  <div class="col-lg-7 col-md-8 col-sm-8 col-xs-8 <%= cycle('bg3','bg2','bg2','bg1','bg3','bg3')%> center cell ">
     <%= artist.name %>
   </div>
-  <div class="col-lg-1 hidden-md hidden-sm hidden-xs <%= cycle('bg2','bg3','bg2','bg2','bg3','bg3','bg1','bg3','bg3','bg1')%> cell no-padding"></div>
+  <div class="col-lg-1 hidden-md hidden-sm hidden-xs  cell "></div>
   </div>
   <% end %>
 <br>
