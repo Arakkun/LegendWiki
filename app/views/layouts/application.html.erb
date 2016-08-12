@@ -3,7 +3,7 @@
   <head>
     <title>UtauDB</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,6 +15,12 @@
         <div class="col-lg-2 col-md-1 col-sm-1 hidden-xs cell"> <!--left-->
         </div>
         <div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 cell bg2"> <!--left-->
+          <% if notice!=nil %>
+            <div class="alert alert-info"><%= notice %></div>
+          <% end %>
+          <% if alert!=nil %>
+            <div class="alert alert-warning"><%= alert %></div>
+          <% end %>
           <%= yield %>
         </div>
         <div class="col-lg-2 col-md-1 col-sm-1 hidden-xs cell"> <!--right-->

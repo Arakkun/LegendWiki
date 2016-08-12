@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require rails_bootstrap_forms
  */
 $bg1: #0084ff;
 $bg2: #8fbbe5;
@@ -35,10 +36,15 @@ $bg4: #e6f3ff;
 }
 .center{
     text-align: center;
+    margin: auto;
 }
 [class^="hidden"], [class*=" hidden"], .no-padding{
     padding: 0;
 } 
+.lead{
+    text-align: center;
+    margin: auto;
+}
 //bgs
 .bg1{
     background-color: $bg1;
@@ -59,6 +65,11 @@ body{
     position:absolute;
     bottom:0;
 }
+
+.alert:empty {
+   display: none;
+}
+
 // pills restyle
 .nav-link {
     background-color: lighten($bg1,20);
@@ -75,39 +86,46 @@ h1, h2, h3, h4, h5{
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
 }
-
+h1{
+    padding: 0.5rem 0.6rem 1rem 0.6rem;
+}
 // @media queries
 // responsive padding
-@media screen and (min-width: 1200px){
+@media (min-width: 1200px){
     [class^="col-lg"], [class*=" col-lg"]{
         padding: 0.6rem;
     }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1119.999px){
+@media (min-width: 992px) and (max-width: 1199.999px){
     [class^="col-md"], [class*=" col-md"]{
-        padding: 0.4rem;
+        padding: 0.3rem;
     }
 }
-@media screen and (min-width: 768px) and (max-width: 991.999px){
+@media (min-width: 768px) and (max-width: 991.999px){
     [class^="col-sm"], [class*=" col-sm"]{
-        padding: 0.2rem;
+        padding: 0.1rem;
     }
 }
-@media screen and (max-width: 767.999px) {
+@media (max-width: 767.999px) {
     [class^="col-xs"], [class*=" col-xs"]{
-        padding: 0.1rem;
+        padding: 0.05rem;
+    }
+    .btn{
+        font-size: 0.9rem;
+        padding: 0.39rem 0.78rem;
     }
 }
 
 
 // correcting: font
-@media screen and (max-width: 640px) {
+@media (max-width: 640px) {
     body{
         font-size: 0.9rem;
     }
     h1 {
         font-size: 2rem;
+        padding: 0.4rem 0.5rem 0.9rem 0.5rem;
     }
     h2 {
         font-size: 1.6rem;
@@ -118,13 +136,18 @@ h1, h2, h3, h4, h5{
     h4 {
         font-size: 1.4rem;
     }
+    .btn {
+        font-size: 0.8rem;
+        padding: 0.32rem 0.64rem;
+    }
 }
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
     body{
         font-size: 0.9rem;
     }
     h1 {
         font-size: 1.6rem;
+        padding: 0.3rem 0.4rem 0.8rem 0.4rem;
     }
     h2 {
         font-size: 1.4rem;
@@ -138,13 +161,17 @@ h1, h2, h3, h4, h5{
     h5 {
         font-size: 1.15rem;
     }
+    .btn{
+        padding: 0.20rem 0.4rem;
+    }
 }
-@media screen and (max-width: 390px) {
+@media (max-width: 390px) {
     body{
         font-size: 0.75rem;
     }
     h1 {
         font-size: 1.3rem;
+        padding: 0.2rem 0.3rem 0.7rem 0.3rem;
     }
     h2 {
         font-size: 1.2rem;
@@ -158,13 +185,18 @@ h1, h2, h3, h4, h5{
     h5 {
         font-size: 1.05rem;
     }
+    .btn{
+        font-size: 0.6rem;
+        padding: 0.15rem 0.3rem;
+    }
 }
-@media screen and (max-width: 340px) {
+@media (max-width: 340px) {
     body{
         font-size: 0.7rem;
     }
     h1 {
         font-size: 1.2rem;
+        padding: 0.15rem 0.2rem 0.6rem 0.2rem;
     }
     h2 {
         font-size: 1.1rem;
@@ -178,13 +210,17 @@ h1, h2, h3, h4, h5{
     h5 {
         font-size: 1rem;
     }
+    .btn{
+        padding: 0.14rem 0.28rem;
+    }
 }
-@media screen and (max-width: 310px) {
+@media (max-width: 310px) {
     body{
         font-size: 0.6rem;
     }
     h1 {
         font-size: 1.1rem;
+        padding: 0.1rem 0.15rem 0.5rem 0.15rem;
     }
     h2 {
         font-size: 1rem;
@@ -201,13 +237,17 @@ h1, h2, h3, h4, h5{
     h6 {
         font-size: 0.9rem;
     }
+    .btn{
+        padding: 0.08rem 0.16rem;
+    }
 }
-@media screen and (max-width: 270px) {
+@media (max-width: 270px) {
     body{
         font-size: 0.5rem;
     }
     h1 {
         font-size: 1rem;
+        padding: 0.05rem 0.1rem 0.4rem 0.1rem;
     }
     h2 {
         font-size: 0.9rem;

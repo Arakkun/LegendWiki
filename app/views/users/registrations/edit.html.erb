@@ -1,0 +1,28 @@
+
+<div class="center">
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="alert alert-warning"><%= devise_error_messages! %></div>
+    <div class="jumbotron bg3">
+      <h1 class="display-1 center">Edit <%= resource_name.to_s.humanize %></h1>
+      <p class="lead">Editing user infos</p>
+    </div>
+    <%= f.email_field :email, autofocus: true %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+    <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <i>(we need your current password to confirm your changes)</i>
+    <%= f.password_field :current_password, autocomplete: "off" %>
+    <div class="btn-group btn-group-lg" role="group" aria-label="...">
+    <%= f.submit "Update" %>
+    <%= link_to "Delete your account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger'  %>
+    <%= link_to "Back", :back, class: 'btn btn-secondary'  %>
+    </div>
+  <% end %>
+  
+</div>

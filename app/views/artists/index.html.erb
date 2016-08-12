@@ -1,28 +1,36 @@
-<p id="notice"><%= notice %></p>
-<h1>Artists</h1>
-<div class="row fixed">
-  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs bg3 cell "></div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg1 center cell "><h2>Avatar</h2></div>
-  <div class="col-lg-8 col-md-9 col-sm-10 col-xs-10 bg3 center cell "><h2>Name</h2></div>
-  <div class="col-lg-1 hidden-md hidden-sm hidden-xs bg1 cell "></div>
+<div class="jumbotron bg3">
+  <h1 class="display-1 center">Mythological Database</h1>
+  <p class="lead center">Mythological characters database, with bit of story and the place where they where invented</p>
 </div>
-<%isEven=false 
-  @artists.each do |artist|%>
+<div class="row fixed">
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg1 center cell "><h2>Image</h2></div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg3 center cell "><h2>Name</h2></div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg1 center cell "><h2>Description</h2></div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg3 center cell "><% if user_signed_in? %><h2>Edit</h2><% end %></div>
+</div>
+<% @artists.each do |artist|%>
   <div class="row fixed">
-  
-  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs cell "></div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg2','bg1','bg3','bg3')%> center cell">
-    <img width="100%" src="<%= artist.image_url %>"/></div>
-  <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg2','bg1','bg3','bg3')%> cell overlay ">
-    <%= link_to 'Show', artist %><br>
-    <%= link_to 'Edit', edit_artist_path(artist) %><br>
-    <%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-  <div class="col-lg-7 col-md-8 col-sm-8 col-xs-8 <%= cycle('bg3','bg2','bg2','bg1','bg3','bg3')%> center cell ">
-    <%= artist.name %>
-  </div>
-  <div class="col-lg-1 hidden-md hidden-sm hidden-xs  cell "></div>
-  </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg3','bg2','bg1','bg3', 'bg1', 'bg3')%> center cell">
+      <%= link_to '<img width="100%" src="'.html_safe+artist.image_url+'"/>'.html_safe, artist %><br></div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg3','bg2','bg1','bg3', 'bg1', 'bg3')%> center cell ">
+       <%= link_to artist.name, artist %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 center cell <%= cycle('bg3','bg2','bg3','bg2','bg1','bg3', 'bg1', 'bg3')%> ">
+      <%= artist.description.length<1000 ? artist.description.html_safe : artist.description[0,200]+'...' %>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 <%= cycle('bg3','bg2','bg3','bg2','bg1','bg3', 'bg1', 'bg3')%> cell center">
+      <% if user_signed_in? %>
+        <div class="btn-group-vertical">
+          <%= link_to 'Edit', edit_artist_path(artist), class: 'btn btn-outline-primary' %><br>
+          <%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'%>
+        </div>
+      <% end %>
+    </div>
+  </div>  
   <% end %>
 <br>
-<%= link_to 'New Artist', new_artist_path %>
+<div class="center">
+  <% if user_signed_in? %>
+    <%= link_to 'New Artist', new_artist_path, class:'btn btn-primary' %>
+  <% end %>
+</div>

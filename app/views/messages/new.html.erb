@@ -1,22 +1,22 @@
-<p id="notice"><%= notice %></p>
-<%= form_for @message, url: contact_path  do |message_form| %>
-  <fieldset>
-    <div class="field">
-      <%= message_form.text_field :name, placeholder: "Name" %>
+<div class="center">
+<%= bootstrap_form_for(@message, url: contact_path) do |message_form| %>
+  <% if @message.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this mail from being sent:</h2>
+      <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
-    
-    <div class="field">
-      <%= message_form.email_field :email, placeholder: "Email"%>
-    </div>
-    
-    <div class="field">
-      <%= message_form.text_area :content, placeholder: "Message"%>
-    </div>
-  </fieldset>
-  
-  <fieldset>
-    <div class="field">
-      <%= message_form.submit "Send" %>
-    </div>
-  </fieldset>
+  <% end %>
+  <div class="jumbotron bg3">
+    <h1 class="display-1 center">Contact</h1>
+    <div class="alert alert-warning"><p class="lead center">I-it's not that you should contact me for problems.</p></div>
+  </div>
+  <%= message_form.text_field :name %>
+  <%= message_form.email_field :email %>
+  <%= message_form.text_area :content %>
+  <%= message_form.submit "Send mail"%>
 <% end %>
+</div>

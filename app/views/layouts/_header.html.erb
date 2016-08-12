@@ -8,17 +8,26 @@
         <h4>
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <%= link_to '<span class="icon-microphone3"></span>UtauDB'.html_safe, root_path, class: "nav-link "+is_current_page("artist") %>
+                    <%= link_to '<span class="glyphicon glyphicon-book"></span>MythosDB'.html_safe, root_path, class: "nav-link "+is_current_page("artists") %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to '<span class="glyphicon glyphicon-envelope"></span>Contact'.html_safe, contact_path, class: "nav-link "+is_current_page("message") %>
+                    <%= link_to '<span class="glyphicon glyphicon-envelope"></span>Contact'.html_safe, contact_path, class: "nav-link "+is_current_page("messages") %>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to '<span class="glyphicon glyphicon-log-out"></span>Log Out'.html_safe, destroy_user_session_path, :method => :delete, class: "nav-link" %>
+                    </li>  
+                    <li class="nav-item">
+                        <%= link_to '<span class="glyphicon glyphicon-cog"></span>Edit User'.html_safe, edit_user_registration_path, class: "nav-link" %>
+                    </li>   
+                <% else %>
+                    <li class="nav-item">
+                        <%= link_to '<span class="glyphicon glyphicon-log-in"></span>Log In'.html_safe, new_user_session_path, class: "nav-link "+is_current_page("users/sessions") %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to '<span class="glyphicon glyphicon-plus-sign"></span>Registration'.html_safe, new_user_registration_path, class: "nav-link "+is_current_page("devise/registrations") %>
+                    </li> 
+                <% end %>
             </ul>
         </h4>
     </div>

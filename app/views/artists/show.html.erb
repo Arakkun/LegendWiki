@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading"><h2></h2></div>
+  <div class="panel-body"> 
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @artist.name %>
-</p>
+<div class="card col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-sm-12 bg4">
+  <div class="card-block center">
+    <h2 class="card-title"><%= @artist.name %></h2>
+  </div>
+  <img class="img-fluid center" src="<%= @artist.image_url %>" alt="<%= @artist.name %>">
+  <div class="card-block center">
+    <%= @artist.description.html_safe %>
+    <% if user_signed_in? %>
+    <%= link_to 'Edit', edit_artist_path(@artist), class: "btn btn-primary" %> |
+    <% end %>
+    <%= link_to 'Back', artists_path, class: "btn btn-secondary" %>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @artist.description %>
-</p>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @artist.image_url %>
-</p>
-
-<%= link_to 'Edit', edit_artist_path(@artist) %> |
-<%= link_to 'Back', artists_path %>
