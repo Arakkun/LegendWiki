@@ -1,0 +1,9 @@
+<li class="list-group-item overflow-auto">
+    <h5>
+        <%= comment.body %> 
+        <small><%= time_ago_in_words(comment.created_at)+" ago"%></small>
+        <% if comment.user_id=current_user %>
+            <%= link_to 'Destroy',{:action=>"show", :controller=>"comments", :id=>comment.id, artist_id: comment.artist_id}, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger float-right'%>
+        <% end %>
+    </h5>
+</li>

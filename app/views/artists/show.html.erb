@@ -3,19 +3,88 @@
   <div class="panel-body"> 
   </div>
 </div>
-
-<div class="card col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-sm-12 bg4">
+<div class="col-lg-3 col-md-2 col-sm-1 hidden-sm"></div>
+<div class="card col-lg-6 col-md-8 col-sm-10 col-sm-12 bg4">
   <div class="card-block center">
     <h2 class="card-title"><%= @artist.name %></h2>
   </div>
   <img class="img-fluid center" src="<%= @artist.image_url %>" alt="<%= @artist.name %>">
   <div class="card-block center">
     <%= @artist.description.html_safe %>
+  </div>
+  <div class="card-block center square" id="map">
+  </div>
+  <script>
+      var marker={};
+      var map={};
+      var countries,country_vector,country_string;
+      function waitALittle(){
+        countries = <%= '"'.html_safe+ @artist.country_of_origin+'"'.html_safe %>;
+        country_vector = countries.split(", ");
+        //generating the string that will be used for the query 
+        country_string = "'"+country_vector[0];
+        for (var i=1; i<country_vector.length; i++) {
+          country_string +="','"+country_vector[i];
+        }
+        country_string +="'";
+        //map
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(30,0),
+          zoom: 5,
+          streetViewControl: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        map.markers = [];
+        var world_geometry = new google.maps.FusionTablesLayer({
+            query: {
+            select: 'geometry',
+            from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+            where: "Name IN ("+country_string+")"
+          },
+          map: map,
+          suppressInfoWindows: true
+        });
+        var geocoder = new google.maps.Geocoder();
+        for (var i=0; i<country_vector.length; i++) {
+          geocoder.geocode( {'address' : country_vector[i]}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              marker = new google.maps.Marker({position: results[0].geometry.location,map: map});
+              map.markers.push(marker);
+              center();
+            }
+          }
+        );
+      }
+    }
+    function center(){
+      map.setCenter(marker.position);
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5XyFato2vOwJzdw1PcOlk__hm6tAVEuc&callback=waitALittle" async defer ></script>
+  <div class="card-block center" id="there">
+    <small>Press "Center" after map is loaded</small><br/>
     <% if user_signed_in? %>
-    <%= link_to 'Edit', edit_artist_path(@artist), class: "btn btn-primary" %> |
+    <%= link_to 'Destroy', @artist, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%>|
+    <%= link_to 'Edit', edit_artist_path(@artist), class: "btn btn-primary" %>|
     <% end %>
+    <button type="button" class="btn btn-info" onclick="center()">Center</button>|
     <%= link_to 'Back', artists_path, class: "btn btn-secondary" %>
   </div>
+  <div class="jumbotron bg3">
+    <h1 class="center">Comments</h1>
+    <h2 class="center">List of comments to the character</h2>
+  </div>
+  <% if user_signed_in? %>
+    <%= bootstrap_form_for [@artist, Comment.new] do |f| %>
+      <%= f.text_area :body, placeholder: "Add a comment" %><br/>
+      <%= f.hidden_field :user_id, value: current_user %>
+      <%= f.submit "Add Comment" %>
+    <% end %>
+  <% end %>
+  <br/>
+  <ul class="list-group">
+    <%= render(partial: 'comments/comment', collection: @artist.comments) %>
+  </ul>
 </div>
 
 

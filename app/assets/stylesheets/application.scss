@@ -45,6 +45,21 @@ $bg4: #e6f3ff;
     text-align: center;
     margin: auto;
 }
+
+.square:before{
+    content: "";
+    display: block;
+    margin-top: 100%;
+}
+#map{
+    height: 100%;
+    width: 100%;
+}
+.overflow-auto{
+    overflow: auto;
+    vertical-align:middle;
+    text-align: left;
+}
 //bgs
 .bg1{
     background-color: $bg1;
@@ -263,5 +278,9 @@ h1{
     }
     h6 {
         font-size: 0.8rem;
+    }
+    .btn{
+        font-size: 0.5rem;
+        padding: 0;
     }
 }

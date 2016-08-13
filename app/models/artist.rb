@@ -2,6 +2,7 @@ $maxwidthheightratio = 1.7
 $maxheightwidthratio = 3
 
 class Artist < ApplicationRecord
+    has_many :comments
     validates :name, :image_url, presence: true
     validate :checkImage
     def checkImage
